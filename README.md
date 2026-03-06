@@ -1,9 +1,21 @@
 AWS EKS-CLOUD MIGRATION &MONITORING
+
+
+
+
 SUMMARY
+
+
+
+
 This project demonstrates the successful migration of 100MB of critical data from a simulated
 legacy environment(on-prem) into a managed Amazon EKS (Kubernetes) cluster in the Mumbai
 region. The migration was monitored in real-time using a public Grafana dashboard, providing
 transparency and verification of data integrity and system performance.
+
+
+
+
 ARCHITECTURE OVERVIEW
 The solution utilizes a "Bridge" architecture to move data securely while maintaining full
 observability.
@@ -41,6 +53,12 @@ exactly once. This uses the specialized AWS CLI image to pull data from the S3 b
 cluster.
 kubectl run migration-worker --restart=Never --image=amazon/aws-cli -- \
 s3 cp s3://mumbai-migration-project/staging/migration_data.db /tmp/final_destination.db
+
+
+
+
+
+
 MONITORING & VISUAL VERIFICATION
 The dashboard serves as the "Source of Truth" for verifying the migration.
 CPU Utilization: A query monitors the CPU spike during the 100MB transfer, providing proof of
@@ -48,9 +66,12 @@ active processing.
 Migration Success Indicator: A Grafana "Stat" panel is configured to track the pod phase.
 Logic: Once the migration-worker pod reaches the Succeeded phase, the panel turns Green and
 displays "MIGRATION SUCCESS".
+
+
+
+
+
 CONCLUSION
 The project successfully met all technical requirements. By integrating IAM security, automated
 staging, and real-time observability, demonstrated a robust framework for migrating legacy data
 into an Amazon EKS environment.
-•CPU Utilization
-•
