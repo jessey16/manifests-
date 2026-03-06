@@ -1,5 +1,4 @@
-AWS EKS-CLOUD MIGRATION &
-MONITORING
+AWS EKS-CLOUD MIGRATION &MONITORING
 SUMMARY
 This project demonstrates the successful migration of 100MB of critical data from a simulated
 legacy environment(on-prem) into a managed Amazon EKS (Kubernetes) cluster in the Mumbai
@@ -52,7 +51,6 @@ displays "MIGRATION SUCCESS".
 CONCLUSION
 The project successfully met all technical requirements. By integrating IAM security, automated
 staging, and real-time observability, demonstrated a robust framework for migrating legacy data
-into an Amazon EKS environment.Output of the Migration Project: -
-Migration Success Indicator
+into an Amazon EKS environment.
 •CPU Utilization
 •
