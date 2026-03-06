@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: migration-project-demo
+  labels:
+    app: migration
+spec:
+  containers:
+  - name: data-processor
+    image: busybox
+    command: ["sh", "-c", "echo 'Starting 100MB Migration...'; sleep 10; echo 'Migration Complete'; exit 0"]
+  restartPolicy: Never
