@@ -64,6 +64,11 @@ AmazonS3ReadOnlyAccess policy is attached to the Node Group's IAM role.
 
 
 Identify the Node Role:
+
+
+
+
+
 ROLE_NAME=$(aws iam list-roles --query 'Roles[?contains(RoleName, "nodegroup")].RoleName'
 --output text | tr '\t' '\n' | head -n 1)
 Attach Policy:
@@ -73,6 +78,11 @@ arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccessStep
 
 
 3: Monitoring Stack Setup
+
+
+
+
+
 Deploy the Prometheus-Grafana stack via Helm and configure an AWS Load Balancer to provide
 a public endpoint for the dashboard.
 helm install monitoring prometheus-community/kube-prometheus-stack
@@ -82,6 +92,11 @@ kubectl patch svc monitoring-grafana -p '{"spec": {"type": "LoadBalancer"}}'
 
 
 Step 4: Data Staging (The Bridge)
+
+
+
+
+
 Generate the migration payload and stage it in a dedicated S3 bucket in the Mumbai region.
 head -c 100M </dev/Resh> migration_data.db
 aws s3 mb s3://mumbai-migration-project
@@ -90,6 +105,11 @@ aws s3 cp migration_data.db s3://mumbai-migration-project/staging/
 
 
 Step 5: Execution of Migration Job
+
+
+
+
+
 The migration is executed as a non-restarting Kubernetes Job to ensure data is transferred
 exactly once. This uses the specialized AWS CLI image to pull data from the S3 bridge to the
 cluster.
@@ -102,9 +122,17 @@ s3 cp s3://mumbai-migration-project/staging/migration_data.db /tmp/final_destina
 
 
 MONITORING & VISUAL VERIFICATION
+
+
+
+
+
+
 The dashboard serves as the "Source of Truth" for verifying the migration.
 CPU Utilization: A query monitors the CPU spike during the 100MB transfer, providing proof of
 active processing.
+
+
 
 
 Migration Success Indicator: A Grafana "Stat" panel is configured to track the pod phase.
