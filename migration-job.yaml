@@ -10,3 +10,4 @@ spec:
     image: busybox
     command: ["sh", "-c", "echo 'Starting 100MB Migration...'; sleep 10; echo 'Migration Complete'; exit 0"]
   restartPolicy: Never
+  
